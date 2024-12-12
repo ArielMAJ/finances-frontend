@@ -27,7 +27,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ViewFinancialTransactionDetailsComponent } from './components/view-financial-transaction-details/view-financial-transaction-details.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
-import { DashboardComponent } from './pages/financial-transaction/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({

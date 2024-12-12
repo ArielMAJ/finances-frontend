@@ -1,82 +1,98 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #f8f9fa;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.dashboard-button {
+  transition: transform 0.2s ease, color 0.2s ease;
+  margin-top: 10px;
+  color: #fa3737;
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-button:hover {
+  color: #c92a2a;
+  transform: scale(1.1);
+}
+
+.header-info {
+  text-align: center;
+}
+
+.header-info h1,
+.header-info h2 {
+  margin: 5px 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.header-info .highlight {
+  font-weight: 600;
+  color: #fa3737;
 }
 
 .nav {
-    display: flex;
-    align-items: center;
+  display: flex;
+  gap: 15px;
 }
 
-.nav a
-{
-    margin-left: 20px; 
-    color: #fff;
-    text-decoration: none; 
-    font-family: 'Jua';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 31px;
-
-    color: #626262;
+.nav-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
 }
+
+.nav-button:hover {
+  background-color: #e9ecef;
+  transform: scale(1.1);
+}
+
 .logout-button {
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 50px; 
-    height: 50px; 
-    margin-left: 25px; 
-    font-family: 'Jua';
-    font-style: normal;
-    font-weight: 350;
-    font-size: 25px;
-    color: #FFF; 
-    background-color: #fa3737; 
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 100%;
-    cursor: pointer; 
-    border: none; 
-    outline: none; 
-    transition: background-color 0.3s ease; 
+  color: #fa3737;
 }
 
 .logout-button:hover {
-    background-color: #ee222f; 
+  background-color: #ffe3e3;
 }
 
 .editar-button {
-    @extend .logout-button;
-    background-color: #fa3737 !important; /* Purple */
+  color: #4caf50;
 }
 
 .editar-button:hover {
-    background-color: #ee222f !important; /* Darker purple */
+  background-color: #e8f5e9;
 }
 
-
-.logo {
-    max-width: 100px; 
-}
-
-
-
-.dashboard-button {
-    margin: 10px;
-    color: #fa3737;
-    width: 60px;
-    height: 60px;
-    font-size: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
 
-.dashboard-button:hover {
-    background: transparent;
+  .header-info {
+    text-align: left;
+  }
+
+  .nav {
+    align-self: stretch;
+    justify-content: space-between;
+  }
 }
