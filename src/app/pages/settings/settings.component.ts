@@ -14,11 +14,11 @@ import { UserUpdateRequest } from '../../Models/UserUpdateRequest';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-update-user',
-  templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
 })
-export class UpdateUserComponent implements OnInit {
+export class SettingsComponent implements OnInit {
   updateUserForm!: FormGroup;
   currentUser!: User;
 
