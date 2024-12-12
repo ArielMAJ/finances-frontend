@@ -68,8 +68,10 @@ label {
 input {
   width: 100%;
   border: none;
+  outline: none;
   padding: 5px;
   font-size: 14px;
+  background: transparent;
 }
 
 mat-icon {
@@ -129,11 +131,11 @@ small {
   .form-row {
     flex-direction: column;
   }
-  
+
   .form-group {
     min-width: 100%;
   }
-  
+
   .container {
     // margin-top: 100px;
     max-width: 80vw;

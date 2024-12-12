@@ -1,10 +1,33 @@
 export function applyCurrencyMask(value: String): String {
-  let parsedValue = parseInt(value.replace(/\D/g, '') || '0', 10);
-  if (value.includes(',') || value.includes('.')) {
-    parsedValue = parsedValue / 100;
-  }
+  const initialParse = value.replace(/[^\d.,]/g, '');
+  const decimalSeparator =
+    initialParse.includes(',') &&
+    initialParse.lastIndexOf(',') > initialParse.lastIndexOf('.')
+      ? ','
+      : '.';
+  let tmpValue = initialParse.replace(
+    new RegExp(`[^\\d${decimalSeparator}]`, 'g'),
+    ''
+  );
 
-  const formattedValue = parsedValue
+  let numericValue = parseFloat(tmpValue.replace(decimalSeparator, '.'));
+
+  if (
+    (initialParse.lastIndexOf('.') != -1 &&
+      initialParse.length - initialParse.lastIndexOf('.') === 4) ||
+    (initialParse.lastIndexOf(',') != -1 &&
+      initialParse.length - initialParse.lastIndexOf(',') === 4)
+  ) {
+    numericValue *= 10;
+  } else if (
+    (initialParse.lastIndexOf('.') != -1 &&
+      initialParse.length - initialParse.lastIndexOf('.') === 2) ||
+    (initialParse.lastIndexOf(',') != -1 &&
+      initialParse.length - initialParse.lastIndexOf(',') === 2)
+  ) {
+    numericValue /= 10;
+  }
+  const formattedValue = numericValue
     .toFixed(2)
     .replace('.', ',')
     .replace(/\d(?=(\d{3})+\.)/g, '$&.');

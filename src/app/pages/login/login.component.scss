@@ -113,28 +113,10 @@ body {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
-@media (min-width: 768px) {
-  .login-content {
-    grid-template-columns: 1fr 1fr;
-    max-width: 800px;
-  }
-
-  .register-section {
-    text-align: left;
-    padding-left: 20px;
-    border-left: 2px solid #f4f6f8;
-  }
-}
-
 @media (max-width: 480px) {
   .login-content {
     max-width: 320px;
     padding: 15px;
-  }
-
-  .input-group {
-    flex-direction: column;
-    align-items: stretch;
   }
 
   .input-login {

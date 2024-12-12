@@ -4,7 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -26,8 +26,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'update-user',
-    component: UpdateUserComponent,
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard],
   },
 ];
