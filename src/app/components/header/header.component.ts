@@ -13,22 +13,32 @@ import { applyCurrencyMask } from '../../common/utils';
 export class HeaderComponent {
   currentUser!: User;
   totalTransactionValue!: String;
-  
-  constructor(private router: Router,
+
+  constructor(
+    private router: Router,
 
     private userService: UserService,
-    private financialTransactionService: FinancialTransactionService,
-
+    private financialTransactionService: FinancialTransactionService
   ) {}
 
-
   ngOnInit(): void {
-    this.userService
-      .getCurrentUser()
-      .subscribe((data) => {
-        this.currentUser = data;
-      });
-    this.financialTransactionService.getTotalTransactionValue().subscribe((value) => this.totalTransactionValue = applyCurrencyMask(value.toString()))
+    this.currentUser = {
+      id: 0,
+      name: 'placeholder',
+      accountNumber: 0,
+      email: 'placeholder',
+      createdAt: new Date(),
+      age: 0,
+    } as User;
+    this.userService.getCurrentUser().subscribe((data) => {
+      this.currentUser = data;
+    });
+    this.financialTransactionService
+      .getTotalTransactionValue()
+      .subscribe(
+        (value) =>
+          (this.totalTransactionValue = applyCurrencyMask(value.toString()))
+      );
   }
 
   logout() {
