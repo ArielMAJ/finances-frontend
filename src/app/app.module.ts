@@ -21,13 +21,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ToastrModule } from 'ngx-toastr';
 import { CreateFinancialTransactionComponent } from './components/create-financial-transaction/create-financial-transaction.component';
 import { DeleteFinancialTransactionComponent } from './components/delete-financial-transaction/delete-financial-transaction.component';
-import { UpdateFinancialTransactionComponent } from './components/update-financial-transaction/update-financial-transaction.component';
 import { DeletionConfirmationModalComponent } from './components/header/deletion-confirmation-modal/deletion-confirmation-modal.component';
 import { HeaderComponent } from './components/header/header.component';
+import { UpdateFinancialTransactionComponent } from './components/update-financial-transaction/update-financial-transaction.component';
 import { ViewFinancialTransactionDetailsComponent } from './components/view-financial-transaction-details/view-financial-transaction-details.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
@@ -36,13 +36,13 @@ import { AuthInterceptor } from './services/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    UpdateUserComponent,
     DeletionConfirmationModalComponent,
     DashboardComponent,
     DeleteFinancialTransactionComponent,
     ViewFinancialTransactionDetailsComponent,
     UpdateFinancialTransactionComponent,
     CreateFinancialTransactionComponent,
+    SettingsComponent,
   ],
   imports: [
     MatFormFieldModule,
