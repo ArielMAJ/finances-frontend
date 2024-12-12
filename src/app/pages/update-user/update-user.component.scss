@@ -1,0 +1,108 @@
+.background-div {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom, #cc092f 45%, #fdfdfd 30%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group mat-icon {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+}
+
+.input-login {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-login:focus {
+  border-color: #cc092f;
+  box-shadow: 0 0 4px rgba(204, 9, 47, 0.5);
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.input-submit {
+  background-color: #ff4d4d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.input-submit:hover {
+  background-color: #a30824;
+}
+
+.delete-button {
+  background-color: #cc092f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d13636;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

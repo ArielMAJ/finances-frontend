@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="left-section">
+    <mat-card>
+      <h1>Editar o Transação Financeira</h1>
+      <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Valor</mat-label>
+            <input matInput formControlName="value">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button
+            type="submit"
+            mat-button
+            color="primary"
+            [mat-dialog-close]="true"
+            cdkFocusInitial
+          >
+            Editar
+          </button>
+          <button mat-button color="warn" mat-dialog-close>Cancelar</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  <div class="right-section">
+    <img src="assets/images/team.png" alt="Edição de Transação Financeira">
+  </div>
+</div>

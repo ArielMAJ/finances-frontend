@@ -1,0 +1,168 @@
+<body>
+  <div class="background-div">
+    <div class="login-content">
+      <form
+        class="form-content"
+        [formGroup]="cadastroForm"
+        (submit)="submitRegister()"
+      >
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('name')?.errors?.['required'] && cadastroForm.get('name')?.touched"
+            >
+              Campo Obrigatório!
+            </div>
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('name')?.errors?.['minlength'] && cadastroForm.get('name')?.touched"
+            >
+              Tamanho mínimo de
+              {{cadastroForm.get('name')?.errors?.['minlength']?.requiredLength}}
+              caracteres.
+            </div>
+          </div>
+          <mat-label>Nome</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>badge</mat-icon>
+            <input class="input-login" formControlName="name" />
+          </div>
+        </div>
+
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('age')?.errors?.['required'] && cadastroForm.get('age')?.touched"
+            >
+              Campo Obrigatório!
+            </div>
+
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('age')?.errors?.['min'] && cadastroForm.get('age')?.touched"
+            >
+              Idade mínima de
+              {{cadastroForm.get('age')?.errors?.['min']?.min}}
+              anos.
+            </div>
+
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('age')?.errors?.['max'] && cadastroForm.get('age')?.touched"
+            >
+              Idade máxima de
+              {{cadastroForm.get('age')?.errors?.['max']?.max}}
+              anos.
+            </div>
+          </div>
+          <mat-label>Idade</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>event</mat-icon>
+            <input class="input-login" formControlName="age" />
+          </div>
+        </div>
+
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('accountNumber')?.errors?.['required'] && cadastroForm.get('accountNumber')?.touched"
+            >
+              Campo Obrigatório!
+            </div>
+          </div>
+          <mat-label>Número da conta</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <input class="input-login" formControlName="accountNumber" />
+          </div>
+        </div>
+
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('email')?.errors?.['required'] && cadastroForm.get('email')?.touched"
+            >
+              Campo Obrigatório!
+            </div>
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('email')?.errors?.['email'] && cadastroForm.get('email')?.touched"
+            >
+              Formato do email não é válido!
+            </div>
+          </div>
+          <mat-label>Email</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>email</mat-icon>
+            <input class="input-login" formControlName="email" />
+          </div>
+        </div>
+
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('password')?.errors?.['required'] && cadastroForm.get('password')?.touched"
+            >
+              Campo Obrigatório!
+            </div>
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.get('password')?.errors?.['minlength'] && cadastroForm.get('password')?.touched"
+            >
+              Tamanho mínimo de
+              {{cadastroForm.get('password')?.errors?.['minlength']?.requiredLength}}
+              caracteres.
+            </div>
+          </div>
+          <mat-label>Senha</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>locked</mat-icon>
+            <input
+              class="input-login"
+              type="password"
+              formControlName="password"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div style="height: 20px">
+            <div
+              class="error-message"
+              *ngIf="cadastroForm.errors?.['passwordsDoNotMatch'] && cadastroForm.get('passwordConfirmation')?.touched"
+            >
+              As senhas não coincidem!
+            </div>
+          </div>
+          <mat-label>Repita a senha</mat-label>
+          <div class="input-group">
+            <mat-icon matPrefix>locked</mat-icon>
+            <input
+              class="input-login"
+              type="password"
+              formControlName="passwordConfirmation"
+            />
+          </div>
+        </div>
+
+        <br />
+
+        <div class="button-container">
+          <button class="input-submit" [disabled]="!cadastroForm.valid">
+            CADASTRAR
+          </button>
+        </div>
+      </form>
+      <div class="register-section">
+        <h2>Faça já o seu cadastro!</h2>
+        <p>Já possui uma conta?</p>
+        <button routerLink="/login" class="register-button">Faça o Login</button>
+      </div>
+    </div>
+  </div>
+</body>

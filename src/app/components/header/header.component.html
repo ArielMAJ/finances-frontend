@@ -1,0 +1,17 @@
+<div class="header">
+  <a routerLink="/dashboard">
+    <mat-icon class="dashboard-button">paid</mat-icon>
+  </a>
+  <h1>Olá, {{currentUser.name}}!</h1>
+  <h1>Conta: {{currentUser.accountNumber}}</h1>
+  <h1>Saldo: {{totalTransactionValue.toString() | currency : 'BRL' : 'symbol' : '1.2-2'}}</h1>
+
+  <nav class="nav">
+    <button color="primary" class="editar-button" routerLink="/update-user">
+      <mat-icon>person</mat-icon>
+    </button>
+    <button color="primary" class="logout-button" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </nav>
+</div>

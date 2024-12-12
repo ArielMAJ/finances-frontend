@@ -1,0 +1,174 @@
+<app-header></app-header>
+
+<div class="background-div">
+  <div class="login-content">
+    <form
+      class="form-content"
+      [formGroup]="updateUserForm"
+      (submit)="updateUser()"
+    >
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('name')?.errors?.['required'] && updateUserForm.get('name')?.touched"
+          >
+            Campo Obrigatório!
+          </div>
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('name')?.errors?.['minlength'] && updateUserForm.get('name')?.touched"
+          >
+            Tamanho mínimo de
+            {{updateUserForm.get('name')?.errors?.['minlength']?.requiredLength}}
+            caracteres.
+          </div>
+        </div>
+        <mat-label>Nome</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>badge</mat-icon>
+          <input class="input-login" formControlName="name" />
+        </div>
+      </div>
+
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('age')?.errors?.['required'] && updateUserForm.get('age')?.touched"
+          >
+            Campo Obrigatório!
+          </div>
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('age')?.errors?.['min'] && updateUserForm.get('age')?.touched"
+          >
+            Idade mínima de
+            {{updateUserForm.get('age')?.errors?.['min']?.min}}
+            anos.
+          </div>
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('age')?.errors?.['max'] && updateUserForm.get('age')?.touched"
+          >
+            Idade máxima de
+            {{updateUserForm.get('age')?.errors?.['max']?.max}}
+            anos.
+          </div>
+        </div>
+        <mat-label>Idade</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>event</mat-icon>
+          <input class="input-login" formControlName="age" />
+        </div>
+      </div>
+
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('accountNumber')?.errors?.['required'] && updateUserForm.get('accountNumber')?.touched"
+          >
+            Campo Obrigatório!
+          </div>
+        </div>
+        <mat-label>Número da conta</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>account_circle</mat-icon>
+          <input class="input-login" formControlName="accountNumber" />
+        </div>
+      </div>
+
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('email')?.errors?.['required'] && updateUserForm.get('email')?.touched"
+          >
+            Campo Obrigatório!
+          </div>
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('email')?.errors?.['email'] && updateUserForm.get('email')?.touched"
+          >
+            Formato do email não é válido!
+          </div>
+        </div>
+        <mat-label>Email</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>email</mat-icon>
+          <input class="input-login" formControlName="email" />
+        </div>
+      </div>
+
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('password')?.errors?.['required'] && updateUserForm.get('password')?.touched"
+          >
+            Campo Obrigatório!
+          </div>
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.get('password')?.errors?.['minlength'] && updateUserForm.get('password')?.touched"
+          >
+            Tamanho mínimo de
+            {{updateUserForm.get('password')?.errors?.['minlength']?.requiredLength}}
+            caracteres.
+          </div>
+        </div>
+        <mat-label>Senha atual ou nova senha</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>locked</mat-icon>
+          <input
+            class="input-login"
+            type="password"
+            formControlName="password"
+          />
+        </div>
+      </div>
+
+      <div>
+        <div style="height: 20px">
+          <div
+            class="error-message"
+            *ngIf="updateUserForm.errors?.['passwordsDoNotMatch'] && updateUserForm.get('passwordConfirmation')?.touched"
+          >
+            As senhas não coincidem!
+          </div>
+        </div>
+        <mat-label>Repita a senha</mat-label>
+        <div class="input-group">
+          <mat-icon matPrefix>locked</mat-icon>
+          <input
+            class="input-login"
+            type="password"
+            formControlName="passwordConfirmation"
+          />
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button class="input-submit" routerLink="/dashboard">
+          Cancelar
+        </button>
+        <button class="input-submit" [disabled]="!updateUserForm.valid">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="background-div">
+  <div class="login-content">
+    <h1>Atenção!</h1>
+    <h2>Excluir sua conta implica em perdas de dados.</h2>
+    <div class="button-container">
+      <button class="delete-button" type="button" (click)="deleteUser()">
+        Excluir Conta
+      </button>
+    </div>
+  </div>
+</div>
