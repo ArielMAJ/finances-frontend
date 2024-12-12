@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<div class="margem">
+  <div class="dashboard-header">
+    <h1>Extrato</h1>
+  </div>
+  <button
+    (click)="openCreateItemDialog()"
+    mat-icon-button
+    class="create-item-button"
+  >
+    <mat-icon class="create-item-icon">add_circle_outline</mat-icon>
+  </button>
+  <mat-form-field class="search-bar">
+    <mat-label>Pesquisar</mat-label>
+    <input matInput (input)="search($event)" />
+  </mat-form-field>
+
+  <mat-card>
+    <table
+      mat-table
+      [dataSource]="filteredFinancialTransactions"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="currency">
+        <th class="currency-cell" mat-header-cell *matHeaderCellDef></th>
+        <td
+          class="currency-cell"
+          mat-cell
+          *matCellDef="let financialTransaction"
+        >
+          R$
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="transaction">
+        <th mat-header-cell *matHeaderCellDef>Transações</th>
+        <td
+          class="transaction-cell"
+          mat-cell
+          *matCellDef="let financialTransaction"
+        >
+          {{ financialTransaction.value.toFixed(2) }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Descrição</th>
+        <td
+          class="description-cell"
+          mat-cell
+          *matCellDef="let financialTransaction"
+        >
+          {{ financialTransaction.description }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td
+          class="table-actions-cell"
+          mat-cell
+          *matCellDef="let financialTransaction"
+        >
+          <span>
+            <button
+              (click)="openViewItemDialog(financialTransaction)"
+              mat-icon-button
+              class="button-color-view"
+            >
+              <mat-icon class="color-icon">visibility</mat-icon>
+            </button>
+            <button
+              (click)="openEditItemDialog(financialTransaction)"
+              mat-icon-button
+              class="button-color-edit"
+            >
+              <mat-icon class="color-icon">edit</mat-icon>
+            </button>
+
+            <button
+              (click)="openDeleteItemDialog(financialTransaction)"
+              mat-icon-button
+              class="button-color-delete"
+            >
+              <mat-icon class="color-icon">delete</mat-icon>
+            </button>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+  </mat-card>
+</div>

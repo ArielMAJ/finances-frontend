@@ -1,0 +1,82 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000000;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a
+{
+    margin-left: 20px; 
+    color: #fff;
+    text-decoration: none; 
+    font-family: 'Jua';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 31px;
+
+    color: #626262;
+}
+.logout-button {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 50px; 
+    height: 50px; 
+    margin-left: 25px; 
+    font-family: 'Jua';
+    font-style: normal;
+    font-weight: 350;
+    font-size: 25px;
+    color: #FFF; 
+    background-color: #fa3737; 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100%;
+    cursor: pointer; 
+    border: none; 
+    outline: none; 
+    transition: background-color 0.3s ease; 
+}
+
+.logout-button:hover {
+    background-color: #ee222f; 
+}
+
+.editar-button {
+    @extend .logout-button;
+    background-color: #fa3737 !important; /* Purple */
+}
+
+.editar-button:hover {
+    background-color: #ee222f !important; /* Darker purple */
+}
+
+
+.logo {
+    max-width: 100px; 
+}
+
+
+
+.dashboard-button {
+    margin: 10px;
+    color: #fa3737;
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+
+.dashboard-button:hover {
+    background: transparent;
+}

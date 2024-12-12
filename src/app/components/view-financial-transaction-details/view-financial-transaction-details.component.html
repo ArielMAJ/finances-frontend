@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="left-section">
+    <mat-card>
+      <h1>Detalhes da Transação Financeira</h1>
+
+      <form>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Valor da transação</mat-label>
+            <input
+              matInput
+              type="text"
+              value="{{
+                financialTransaction?.value?.toString()
+                  | currency : 'BRL' : 'symbol' : '1.2-2'
+              }}"
+              disabled
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Descrição da transação financeira</mat-label>
+            <input
+              matInput
+              value="{{ financialTransaction?.description }}"
+              disabled
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Data de Criação</mat-label>
+            <input
+              matInput
+              type="date"
+              [value]="formattedCreatedAt"
+              disabled
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Data da última atualização</mat-label>
+            <input
+              matInput
+              type="date"
+              [value]="formattedUpdatedAt"
+              disabled
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  <div class="right-section">
+    <img src="assets/images/team.png" alt="Detalhes sobre transações financeiras" />
+  </div>
+</div>

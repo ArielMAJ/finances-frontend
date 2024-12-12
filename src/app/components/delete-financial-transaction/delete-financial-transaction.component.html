@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Confirmar exclusão</h2>
+<mat-dialog-content>
+  Descrição: {{ financialTransaction.description }}
+  <br />
+  Valor:
+  {{
+    financialTransaction.value.toString()
+      | currency : "BRL" : "symbol" : "1.2-2"
+  }}
+  <hr />
+  <br />
+  Tem certeza de que deseja excluir?
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="warn" mat-dialog-close>Cancelar</button>
+  <button
+    (click)="Delete()"
+    mat-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Confirmar
+  </button>
+</mat-dialog-actions>
