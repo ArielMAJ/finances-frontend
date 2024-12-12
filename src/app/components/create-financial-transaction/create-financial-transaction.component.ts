@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { applyCurrencyMask } from '../../common/utils';
 import { FinancialTransactionCreateRequest } from '../../Models/FinancialTransactionCreateRequest';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
-import { applyCurrencyMask } from '../../common/utils';
 
 @Component({
   selector: 'app-create-financial-transaction',
@@ -57,13 +57,11 @@ export class CreateFinancialTransactionComponent implements OnInit {
       );
   }
 
- 
   applyCurrencyMaskOnEvent(event: Event) {
     const input = event.target as HTMLInputElement;
-    let maskedValue = applyCurrencyMask(input.value)
+    let maskedValue = applyCurrencyMask(input.value);
     this.cadastroForm.get('value')?.setValue(maskedValue, {
       emitEvent: false,
     });
   }
-
 }
