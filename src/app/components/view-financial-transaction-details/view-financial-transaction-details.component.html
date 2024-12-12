@@ -12,7 +12,8 @@
               matInput
               type="text"
               value="{{
-                _applyCurrencyMask(financialTransaction.value.toString())
+                financialTransaction.value.toString()
+                  | currency : 'BRL' : 'symbol' : '1.2-2'
               }}"
               disabled
             />
