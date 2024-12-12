@@ -68,9 +68,15 @@ label {
 input {
   width: 100%;
   border: none;
+  outline: none;
   padding: 5px;
   font-size: 14px;
+  background: transparent;
 }
+
+// input:.* {
+//   border: none;
+// }
 
 mat-icon {
   margin-right: 5px;
