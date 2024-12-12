@@ -74,10 +74,6 @@ input {
   background: transparent;
 }
 
-// input:.* {
-//   border: none;
-// }
-
 mat-icon {
   margin-right: 5px;
   color: #cc092f;
@@ -135,11 +131,11 @@ small {
   .form-row {
     flex-direction: column;
   }
-  
+
   .form-group {
     min-width: 100%;
   }
-  
+
   .container {
     // margin-top: 100px;
     max-width: 80vw;
