@@ -26,7 +26,7 @@ export class FinancialTransactionService {
   }
   updateFinancialTransaction(
     id: Number,
-    financialTransaction: any
+    financialTransaction: FinancialTransactionCreateRequest
   ): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.httpClient.put<void>(url, financialTransaction);

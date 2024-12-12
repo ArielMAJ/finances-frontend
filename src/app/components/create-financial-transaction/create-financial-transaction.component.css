@@ -81,7 +81,7 @@ button {
   }
 
   .modal-image {
-    order: -1; /* Display image above the form */
+    order: -1;
   }
 
   .button-group {
