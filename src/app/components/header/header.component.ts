@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../Models/User';
-import { applyCurrencyMask } from '../../common/utils';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +11,7 @@ import { applyCurrencyMask } from '../../common/utils';
 })
 export class HeaderComponent {
   currentUser!: User;
-  totalTransactionValue!: String;
+  totalTransactionValue!: Number;
 
   constructor(
     private router: Router,
@@ -24,9 +23,9 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.currentUser = {
       id: 0,
-      name: 'placeholder',
+      name: '',
       accountNumber: 0,
-      email: 'placeholder',
+      email: '',
       createdAt: new Date(),
       age: 0,
     } as User;
@@ -37,7 +36,7 @@ export class HeaderComponent {
       .getTotalTransactionValue()
       .subscribe(
         (value) =>
-          (this.totalTransactionValue = applyCurrencyMask(value.toString()))
+          (this.totalTransactionValue = value)
       );
   }
 
