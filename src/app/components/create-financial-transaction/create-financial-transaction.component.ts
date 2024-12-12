@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FinancialTransactionCreateRequest } from '../../Models/FinancialTransactionCreateRequest';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
+import { applyCurrencyMask } from '../../common/utils';
 
 @Component({
   selector: 'app-create-financial-transaction',
@@ -21,8 +22,8 @@ export class CreateFinancialTransactionComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.cadastroForm = this.fb.group({
-      value: ['R$ 0.00', Validators.required],
-      description: ['', Validators.required],
+      value: ['R$ 0,00', Validators.required],
+      description: [''],
     });
   }
 
@@ -30,11 +31,11 @@ export class CreateFinancialTransactionComponent implements OnInit {
 
   onSubmit() {
     const formValues = this.cadastroForm.value;
-
     const valueString: string = formValues.value
       .replace('R$ ', '')
       .replace(/\./g, '')
-      .replace(',', '.');
+      .replace(',', '.')
+      .replace(' ', '');
 
     const financialTransactionData: FinancialTransactionCreateRequest = {
       value: parseFloat(valueString),
@@ -56,15 +57,13 @@ export class CreateFinancialTransactionComponent implements OnInit {
       );
   }
 
-  applyCurrencyMask(event: Event) {
+ 
+  applyCurrencyMaskOnEvent(event: Event) {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, '');
-
-    const parsedValue = (parseInt(value || '0', 10) / 100).toFixed(2);
-    const formattedValue = parsedValue.replace('.', ',').replace(/\d(?=(\d{3})+\.)/g, '$&.');
-    input.value = `R$ ${formattedValue}`;
-    this.cadastroForm.get('value')?.setValue(input.value, {
+    let maskedValue = applyCurrencyMask(input.value)
+    this.cadastroForm.get('value')?.setValue(maskedValue, {
       emitEvent: false,
     });
   }
+
 }

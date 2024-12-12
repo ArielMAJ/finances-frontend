@@ -1,11 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FinancialTransaction } from '../../Models/FinancialTransaction';
+import { FinancialTransactionCreateRequest } from '../../Models/FinancialTransactionCreateRequest';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
+import { applyCurrencyMask } from '../../common/utils';
 
 @Component({
   selector: 'app-update-financial-transaction',
@@ -26,7 +28,7 @@ export class UpdateFinancialTransactionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: FinancialTransaction
   ) {
     this.cadastroForm = this.fb.group({
-      value: [''],
+      value: ['R$ 0,00', Validators.required],
       description: [''],
     });
   }
@@ -36,8 +38,9 @@ export class UpdateFinancialTransactionComponent implements OnInit {
       .getFinancialTransaction(this.data.id)
       .subscribe(
         (transaction) => {
-          this.cadastroForm.patchValue({
-            ...transaction,
+          return this.cadastroForm.patchValue({
+            value: applyCurrencyMask(this.data.value.toString()),
+            description: this.data.description,
           });
         },
         (error) => {
@@ -47,24 +50,39 @@ export class UpdateFinancialTransactionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.cadastroForm.valid) {
-      const formValue = this.cadastroForm.value;
-      const updatedFinancialTransaction = {
-        ...formValue,
-      };
+    const formValues = this.cadastroForm.value;
+    const valueString: string = formValues.value
+      .replace('R$ ', '')
+      .replace(/\./g, '')
+      .replace(',', '.')
+      .replace(' ', '');
 
-      this.financialTransactionService
-        .updateFinancialTransaction(this.data.id, updatedFinancialTransaction)
-        .subscribe(
-          (response) => {
-            this.toastr.success('Transação editada com sucesso!');
-            window.location.reload();
-          },
-          (error) => {
-            console.error('Erro ao editar transação:', error);
-            this.toastr.error('Erro ao editar transação!');
-          }
-        );
-    }
+    const financialTransactionData: FinancialTransactionCreateRequest = {
+      value: parseFloat(valueString),
+      description: formValues.description,
+    };
+
+    this.financialTransactionService
+      .updateFinancialTransaction(this.data.id, financialTransactionData)
+      .subscribe(
+        (response) => {
+          this.toastr.success('Transação editada com sucesso!');
+          window.location.reload();
+        },
+        (error) => {
+          console.error('Erro ao editar transação:', error);
+          this.toastr.error('Erro ao editar transação!');
+        }
+      );
   }
+
+  applyCurrencyMaskOnEvent(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let maskedValue = applyCurrencyMask(input.value)
+    this.cadastroForm.get('value')?.setValue(maskedValue, {
+      emitEvent: false,
+    });
+  }
+
+
 }

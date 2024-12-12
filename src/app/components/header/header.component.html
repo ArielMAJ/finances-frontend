@@ -1,16 +1,31 @@
 <div class="header">
-  <a routerLink="/dashboard">
+  <a routerLink="/dashboard" class="dashboard-link">
     <mat-icon class="dashboard-button">paid</mat-icon>
   </a>
-  <h1>Olá, {{currentUser.name}}!</h1>
-  <h1>Conta: {{currentUser.accountNumber}}</h1>
-  <h1>Saldo: {{totalTransactionValue.toString() | currency : 'BRL' : 'symbol' : '1.2-2'}}</h1>
-
+  <div class="header-info">
+    <h1>
+      Olá, <span class="highlight">{{ currentUser.name }}</span
+      >!
+    </h1>
+    <h2>
+      Conta: <span class="highlight">{{ currentUser.accountNumber }}</span>
+    </h2>
+    <h2>
+      Saldo:
+      <span class="highlight">{{
+        totalTransactionValue.toString() | currency : "BRL" : "symbol" : "1.2-2"
+      }}</span>
+    </h2>
+  </div>
   <nav class="nav">
-    <button color="primary" class="editar-button" routerLink="/update-user">
+    <button
+      mat-icon-button
+      class="nav-button editar-button"
+      routerLink="/update-user"
+    >
       <mat-icon>person</mat-icon>
     </button>
-    <button color="primary" class="logout-button" (click)="logout()">
+    <button mat-icon-button class="nav-button logout-button" (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
     </button>
   </nav>

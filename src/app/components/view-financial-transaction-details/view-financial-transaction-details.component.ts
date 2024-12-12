@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinancialTransaction } from '../../Models/FinancialTransaction';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
+import { applyCurrencyMask } from '../../common/utils';
 
 @Component({
   selector: 'app-financial-transaction-details',
@@ -12,7 +13,10 @@ import { FinancialTransactionService } from '../../services/financialTransaction
   providers: [DatePipe],
 })
 export class ViewFinancialTransactionDetailsComponent implements OnInit {
-  financialTransaction?: FinancialTransaction;
+  _applyCurrencyMask(arg: String) {
+    return applyCurrencyMask(arg)
+  }
+  financialTransaction!: FinancialTransaction;
   formattedCreatedAt?: string | null;
   formattedUpdatedAt?: string | null;
 

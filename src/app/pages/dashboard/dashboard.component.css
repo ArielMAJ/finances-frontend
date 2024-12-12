@@ -169,7 +169,7 @@ th,
 
 @media (max-width: 432px) {
   .margem {
-    margin: 0;
+    margin: 0 5vw;
     padding: 0;
     padding-bottom: 5vw;
     overflow: scroll;
