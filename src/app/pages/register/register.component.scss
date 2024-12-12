@@ -1,22 +1,16 @@
-body {
+.outer {
   font-family: Arial, sans-serif;
-  margin: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  // height: auto;
-  background: linear-gradient(180deg, #cc092f 20%, #fdfdfd 90%);
+  background: linear-gradient(135deg, #cc092f 10%, #fdfdfd 60%);
 }
 
 .container {
-  width: 100%;
-  max-width: 600px;
-  max-height: 600px;
+  width: 800px;
+  max-width: 90vw;
   padding: 20px;
   box-sizing: border-box;
   margin: auto;
-  margin-bottom: 30px;
 }
 
 .form-card {
@@ -28,7 +22,6 @@ body {
 
 .header {
   text-align: center;
-  // margin-bottom: 20px;
 }
 
 .form-content {
@@ -75,7 +68,7 @@ input {
 }
 
 mat-icon {
-  margin-right: 5px;
+  padding-right: 10px;
   color: #cc092f;
 }
 
@@ -125,19 +118,4 @@ small {
 
 .footer a:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-  }
-
-  .form-group {
-    min-width: 100%;
-  }
-
-  .container {
-    // margin-top: 100px;
-    max-width: 80vw;
-  }
 }
