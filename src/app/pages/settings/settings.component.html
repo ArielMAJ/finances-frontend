@@ -1,171 +1,171 @@
 <app-header></app-header>
 
-<div class="background-div">
-  <div class="login-content">
-    <form
-      class="form-content"
-      [formGroup]="updateUserForm"
-      (submit)="updateUser()"
-    >
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('name')?.errors?.['required'] && updateUserForm.get('name')?.touched"
-          >
-            Campo Obrigatório!
-          </div>
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('name')?.errors?.['minlength'] && updateUserForm.get('name')?.touched"
-          >
-            Tamanho mínimo de
-            {{updateUserForm.get('name')?.errors?.['minlength']?.requiredLength}}
-            caracteres.
-          </div>
-        </div>
-        <mat-label>Nome</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>badge</mat-icon>
-          <input class="input-login" formControlName="name" />
-        </div>
+<div class="outer">
+  <div class="container">
+    <div class="form-card">
+      <div class="header">
+        <h2>Dados do usuário</h2>
+        <p>Altere os campos abaixo para atualizar sua conta.</p>
       </div>
 
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('age')?.errors?.['required'] && updateUserForm.get('age')?.touched"
-          >
-            Campo Obrigatório!
+      <form
+        class="form-content"
+        [formGroup]="updateUserForm"
+        (submit)="updateUser()"
+      >
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome</label>
+            <div class="input-container">
+              <mat-icon matPrefix>badge</mat-icon>
+              <input formControlName="name" placeholder="Digite seu nome" />
+            </div>
+            <small
+              *ngIf="updateUserForm.get('name')?.errors?.['required'] && updateUserForm.get('name')?.touched"
+            >
+              Campo obrigatório!
+            </small>
+            <small
+              *ngIf="updateUserForm.get('name')?.errors?.['minlength'] && updateUserForm.get('name')?.touched"
+            >
+              Mínimo
+              {{ updateUserForm.get('name')?.errors?.['minlength']?.requiredLength }}
+              caracteres.
+            </small>
           </div>
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('age')?.errors?.['min'] && updateUserForm.get('age')?.touched"
-          >
-            Idade mínima de
-            {{updateUserForm.get('age')?.errors?.['min']?.min}}
-            anos.
-          </div>
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('age')?.errors?.['max'] && updateUserForm.get('age')?.touched"
-          >
-            Idade máxima de
-            {{updateUserForm.get('age')?.errors?.['max']?.max}}
-            anos.
-          </div>
-        </div>
-        <mat-label>Idade</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>event</mat-icon>
-          <input class="input-login" formControlName="age" />
-        </div>
-      </div>
 
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('accountNumber')?.errors?.['required'] && updateUserForm.get('accountNumber')?.touched"
-          >
-            Campo Obrigatório!
+          <div class="form-group">
+            <label>Idade</label>
+            <div class="input-container">
+              <mat-icon matPrefix>event</mat-icon>
+              <input
+                formControlName="age"
+                placeholder="Digite sua idade"
+                type="number"
+              />
+            </div>
+            <small
+              *ngIf="updateUserForm.get('age')?.errors?.['required'] && updateUserForm.get('age')?.touched"
+            >
+              Campo obrigatório!
+            </small>
+            <small
+              *ngIf="updateUserForm.get('age')?.errors?.['min'] && updateUserForm.get('age')?.touched"
+            >
+              Mínimo de
+              {{ updateUserForm.get('age')?.errors?.['min']?.min }} anos.
+            </small>
+            <small
+              *ngIf="updateUserForm.get('age')?.errors?.['max'] && updateUserForm.get('age')?.touched"
+            >
+              Máximo de
+              {{ updateUserForm.get('age')?.errors?.['max']?.max }} anos.
+            </small>
           </div>
         </div>
-        <mat-label>Número da conta</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>account_circle</mat-icon>
-          <input class="input-login" formControlName="accountNumber" />
-        </div>
-      </div>
 
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('email')?.errors?.['required'] && updateUserForm.get('email')?.touched"
-          >
-            Campo Obrigatório!
+        <div class="form-row">
+          <div class="form-group">
+            <label>Número da Conta</label>
+            <div class="input-container">
+              <mat-icon matPrefix>account_circle</mat-icon>
+              <input
+                formControlName="accountNumber"
+                placeholder="Número da conta"
+              />
+            </div>
+            <small
+              *ngIf="updateUserForm.get('accountNumber')?.errors?.['required'] && updateUserForm.get('accountNumber')?.touched"
+            >
+              Campo obrigatório!
+            </small>
           </div>
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('email')?.errors?.['email'] && updateUserForm.get('email')?.touched"
-          >
-            Formato do email não é válido!
-          </div>
-        </div>
-        <mat-label>Email</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>email</mat-icon>
-          <input class="input-login" formControlName="email" />
-        </div>
-      </div>
 
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('password')?.errors?.['required'] && updateUserForm.get('password')?.touched"
-          >
-            Campo Obrigatório!
-          </div>
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.get('password')?.errors?.['minlength'] && updateUserForm.get('password')?.touched"
-          >
-            Tamanho mínimo de
-            {{updateUserForm.get('password')?.errors?.['minlength']?.requiredLength}}
-            caracteres.
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-container">
+              <mat-icon matPrefix>email</mat-icon>
+              <input
+                formControlName="email"
+                placeholder="Digite seu email"
+                type="email"
+              />
+            </div>
+            <small
+              *ngIf="updateUserForm.get('email')?.errors?.['required'] && updateUserForm.get('email')?.touched"
+            >
+              Campo obrigatório!
+            </small>
+            <small
+              *ngIf="updateUserForm.get('email')?.errors?.['email'] && updateUserForm.get('email')?.touched"
+            >
+              Formato inválido!
+            </small>
           </div>
         </div>
-        <mat-label>Senha atual ou nova senha</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>locked</mat-icon>
-          <input
-            class="input-login"
-            type="password"
-            formControlName="password"
-          />
-        </div>
-      </div>
 
-      <div>
-        <div style="height: 20px">
-          <div
-            class="error-message"
-            *ngIf="updateUserForm.errors?.['passwordsDoNotMatch'] && updateUserForm.get('passwordConfirmation')?.touched"
-          >
-            As senhas não coincidem!
+        <div class="form-row">
+          <div class="form-group">
+            <label>Senha</label>
+            <div class="input-container">
+              <mat-icon matPrefix>lock</mat-icon>
+              <input
+                formControlName="password"
+                placeholder="Digite sua senha"
+                type="password"
+              />
+            </div>
+            <small
+              *ngIf="updateUserForm.get('password')?.errors?.['required'] && updateUserForm.get('password')?.touched"
+            >
+              Campo obrigatório!
+            </small>
+            <small
+              *ngIf="updateUserForm.get('password')?.errors?.['minlength'] && updateUserForm.get('password')?.touched"
+            >
+              Mínimo
+              {{ updateUserForm.get('password')?.errors?.['minlength']?.requiredLength }}
+              caracteres.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label>Confirme a Senha</label>
+            <div class="input-container">
+              <mat-icon matPrefix>lock</mat-icon>
+              <input
+                formControlName="passwordConfirmation"
+                placeholder="Repita sua senha"
+                type="password"
+              />
+            </div>
+            <small
+              *ngIf="updateUserForm.errors?.['passwordsDoNotMatch'] && updateUserForm.get('passwordConfirmation')?.touched"
+            >
+              As senhas não coincidem!
+            </small>
           </div>
         </div>
-        <mat-label>Repita a senha</mat-label>
-        <div class="input-group">
-          <mat-icon matPrefix>locked</mat-icon>
-          <input
-            class="input-login"
-            type="password"
-            formControlName="passwordConfirmation"
-          />
-        </div>
-      </div>
 
-      <div class="button-container">
-        <button class="input-submit" routerLink="/dashboard">Cancelar</button>
-        <button class="input-submit" [disabled]="!updateUserForm.valid">
+        <button class="submit-button" routerLink="/dashboard">Cancelar</button>
+        <br />
+        <button [disabled]="!updateUserForm.valid" class="submit-button">
           Salvar
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<div class="background-div">
-  <div class="login-content">
-    <h1>Atenção!</h1>
-    <h2>Excluir sua conta implica em perdas de dados.</h2>
-    <div class="button-container">
-      <button class="delete-button" type="button" (click)="deleteUser()">
-        Excluir Conta
-      </button>
+  <div class="container">
+    <div class="form-card">
+      <div class="header">
+        <h1>Atenção!</h1>
+        <h2>Excluir sua conta implica em perdas de dados.</h2>
+      </div>
+      <div class="button-container">
+        <button class="submit-button" type="button" (click)="deleteUser()">
+          Excluir Conta
+        </button>
+      </div>
     </div>
   </div>
 </div>
