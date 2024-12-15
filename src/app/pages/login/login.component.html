@@ -1,6 +1,6 @@
-<body>
-  <div class="background-div">
-    <div class="login-content">
+<div class="background-div">
+  <div class="login-content">
+    <div>
       <div class="logo">
         <a>
           <mat-icon class="dashboard-button">paid</mat-icon>
@@ -13,18 +13,6 @@
         (submit)="submitLogin()"
       >
         <div>
-          <div
-            class="error-message"
-            *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
-          >
-            Campo de Email Obrigatório!
-          </div>
-          <div
-            class="error-message"
-            *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
-          >
-            Formato do email não é válido!
-          </div>
           <div class="input-group">
             <mat-icon matPrefix>email</mat-icon>
             <input
@@ -37,12 +25,6 @@
         </div>
 
         <div>
-          <div
-            class="error-message"
-            *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
-          >
-            Campo de Senha Obrigatório!
-          </div>
           <div class="input-group">
             <mat-icon matPrefix>lock</mat-icon>
             <input
@@ -60,7 +42,9 @@
           </button>
         </div>
       </form>
+    </div>
 
+    <div>
       <div class="register-section">
         <h2>Boas-vindas ao</h2>
         <h2><strong>Finances Manager</strong></h2>
@@ -71,4 +55,4 @@
       </div>
     </div>
   </div>
-</body>
+</div>
