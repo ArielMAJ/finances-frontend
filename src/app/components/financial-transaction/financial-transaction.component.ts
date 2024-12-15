@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -12,17 +13,21 @@ import { DeletionConfirmationModalComponent } from '../deletion-confirmation-mod
   selector: 'app-financial-transaction',
   templateUrl: './financial-transaction.component.html',
   styleUrls: ['./financial-transaction.component.css'],
+  providers: [DatePipe],
 })
 export class FinancialTransactionComponent implements OnInit {
   transactionForm: FormGroup;
   isViewMode: boolean = false;
   isDeleteMode: boolean = false;
+  formattedCreatedAt?: string | null;
+  formattedUpdatedAt?: string | null;
 
   constructor(
     private fb: FormBuilder,
     private financialTransactionService: FinancialTransactionService,
     private toastr: ToastrService,
     private dialog: MatDialog,
+    private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) public data: FinancialTransactionModalData
   ) {
     const formData = {
@@ -41,6 +46,14 @@ export class FinancialTransactionComponent implements OnInit {
     if (this.isViewMode || this.isDeleteMode) {
       this.transactionForm.controls['value'].disable();
       this.transactionForm.controls['description'].disable();
+      this.formattedCreatedAt = this.datePipe.transform(
+        new Date(this.data.financialTransaction!.createdAt),
+        'yyyy-MM-dd'
+      );
+      this.formattedUpdatedAt = this.datePipe.transform(
+        new Date(this.data.financialTransaction!.updatedAt),
+        'yyyy-MM-dd'
+      );
     }
   }
 
