@@ -15,7 +15,6 @@ h1 {
 }
 
 .dashboard-header {
-
   margin-top: 40px;
 }
 .search-bar {
@@ -63,7 +62,9 @@ tr:nth-child(odd) {
   border: none;
 }
 
-mat-card, .dashboard-header, .search-bar {
+mat-card,
+.dashboard-header,
+.search-bar {
   margin-right: auto;
   margin-left: auto;
   width: min(1000px, 90vw);
@@ -74,7 +75,6 @@ mat-card, .dashboard-header, .search-bar {
   display: flex;
   justify-content: center;
   margin: auto;
-
 }
 
 *::-webkit-scrollbar {
@@ -110,6 +110,8 @@ th,
 
 .description-cell {
   width: auto;
+  max-width: 40vw;
+  overflow-wrap: break-word;
 }
 
 .create-item-icon,
@@ -148,17 +150,27 @@ th,
     bottom: 38px;
     right: 28px;
   }
+
+  .description-cell {
+    max-width: 26vw;
+  }
 }
 
 @media (max-width: 432px) {
-  mat-card, table {
+  mat-card,
+  table {
     width: 90vw;
     margin: auto;
     padding: 0;
   }
 
-  mat-icon, .table-actions-cell {
+  mat-icon,
+  .table-actions-cell {
     margin: 0;
     padding: 0;
+  }
+
+  .description-cell {
+    max-width: 23vw;
   }
 }
