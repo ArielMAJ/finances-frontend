@@ -52,7 +52,6 @@
 
 .form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
 .button-group {
@@ -67,7 +66,6 @@
 
 button {
   min-height: 40px;
-  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {
