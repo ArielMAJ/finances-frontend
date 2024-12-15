@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../Models/User';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
 import { UserService } from '../../services/user.service';
-import { User } from '../../Models/User';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +10,15 @@ import { User } from '../../Models/User';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  currentUser!: User;
-  totalTransactionValue!: Number;
+  currentUser: User = {
+    id: 0,
+    name: '',
+    accountNumber: 0,
+    email: '',
+    createdAt: new Date(),
+    age: 0,
+  };
+  totalTransactionValue: Number = 0;
 
   constructor(
     private router: Router,
@@ -21,23 +28,12 @@ export class HeaderComponent {
   ) {}
 
   ngOnInit(): void {
-    this.currentUser = {
-      id: 0,
-      name: '',
-      accountNumber: 0,
-      email: '',
-      createdAt: new Date(),
-      age: 0,
-    } as User;
     this.userService.getCurrentUser().subscribe((data) => {
       this.currentUser = data;
     });
     this.financialTransactionService
       .getTotalTransactionValue()
-      .subscribe(
-        (value) =>
-          (this.totalTransactionValue = value)
-      );
+      .subscribe((value) => (this.totalTransactionValue = value));
   }
 
   logout() {
