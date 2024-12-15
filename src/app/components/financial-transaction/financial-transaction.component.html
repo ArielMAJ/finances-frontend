@@ -1,11 +1,11 @@
 <div class="modal-container">
   <mat-card class="modal-card">
     <div class="modal-header">
-      <h1>Cadastro de Transações Financeiras</h1>
+      <h1>{{ data.title }} Transação Financeira</h1>
     </div>
     <div class="modal-body">
       <div class="modal-form">
-        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="fill" class="form-field">
             <mat-label>Valor da transação</mat-label>
             <input
@@ -20,16 +20,47 @@
             <input matInput formControlName="description" />
           </mat-form-field>
           <div class="button-group">
-            <button mat-raised-button color="warn" mat-dialog-close>
+            <button
+              *ngIf="!isDeleteMode && !isViewMode"
+              mat-raised-button
+              mat-dialog-close
+              color="warn"
+            >
+              Fechar
+            </button>
+            <button
+              *ngIf="isViewMode"
+              mat-raised-button
+              mat-dialog-close
+              color="primary"
+            >
+              Fechar
+            </button>
+            <button
+              *ngIf="isDeleteMode"
+              mat-raised-button
+              mat-dialog-close
+              color="primary"
+            >
               Cancelar
             </button>
             <button
+              *ngIf="!isViewMode && !isDeleteMode"
               type="submit"
               mat-raised-button
               color="primary"
               [mat-dialog-close]="true"
             >
-              Cadastrar
+              Salvar
+            </button>
+            <button
+              *ngIf="isDeleteMode"
+              type="submit"
+              mat-raised-button
+              color="warn"
+              [mat-dialog-close]="true"
+            >
+              Deletar
             </button>
           </div>
         </form>

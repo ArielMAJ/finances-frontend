@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateFinancialTransactionComponent } from '../../components/create-financial-transaction/create-financial-transaction.component';
-import { DeleteFinancialTransactionComponent } from '../../components/delete-financial-transaction/delete-financial-transaction.component';
-import { UpdateFinancialTransactionComponent } from '../../components/update-financial-transaction/update-financial-transaction.component';
-import { ViewFinancialTransactionDetailsComponent } from '../../components/view-financial-transaction-details/view-financial-transaction-details.component';
+import { FinancialTransactionComponent } from '../../components/financial-transaction/financial-transaction.component';
 import { FinancialTransaction } from '../../Models/FinancialTransaction';
 import { FinancialTransactionService } from '../../services/financialTransaction.service';
 
@@ -47,22 +44,39 @@ export class DashboardComponent implements OnInit {
   }
 
   openDeleteItemDialog(financialTransaction: FinancialTransaction) {
-    this.dialog.open(DeleteFinancialTransactionComponent, {
-      data: financialTransaction,
+    this.dialog.open(FinancialTransactionComponent, {
+      data: {
+        title: 'Deletar',
+        mode: 'delete',
+        financialTransaction: financialTransaction,
+      },
     });
   }
   openCreateItemDialog() {
-    this.dialog.open(CreateFinancialTransactionComponent);
+    this.dialog.open(FinancialTransactionComponent, {
+      data: {
+        title: 'Cadastrar',
+        mode: 'create',
+      },
+    });
   }
   openViewItemDialog(financialTransaction: FinancialTransaction) {
-    this.dialog.open(ViewFinancialTransactionDetailsComponent, {
-      data: financialTransaction,
+    this.dialog.open(FinancialTransactionComponent, {
+      data: {
+        title: 'Detalhes da',
+        mode: 'view',
+        financialTransaction: financialTransaction,
+      },
     });
   }
 
-  openEditItemDialog(financialTransaction: FinancialTransaction) {
-    this.dialog.open(UpdateFinancialTransactionComponent, {
-      data: financialTransaction,
+  openUpdateItemDialog(financialTransaction: FinancialTransaction) {
+    this.dialog.open(FinancialTransactionComponent, {
+      data: {
+        title: 'Atualizar',
+        mode: 'update',
+        financialTransaction: financialTransaction,
+      },
     });
   }
 }

@@ -1,7 +1,7 @@
 export interface FinancialTransaction {
-  id: Number;
-  value: Number;
-  description: String;
+  id: number;
+  value: number;
+  description: string;
   createdAt: Date;
   updatedAt: Date;
 }
