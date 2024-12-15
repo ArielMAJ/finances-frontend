@@ -1,6 +1,6 @@
 .modal-container {
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 90dvh;
 }
 
 .modal-container::-webkit-scrollbar {
@@ -30,7 +30,7 @@
 .modal-body {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 8px;
 }
 
 .modal-form {
@@ -57,7 +57,7 @@
 .button-group {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
 }
 
 .button-group button {
@@ -70,7 +70,7 @@ button {
 
 @media (max-width: 768px) {
   .modal-card {
-    gap: 16px;
+    gap: 0px;
     padding: 16px;
   }
 

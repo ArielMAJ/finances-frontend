@@ -2,7 +2,7 @@
   font-family: "Roboto", sans-serif;
   background-color: #f4f6f8;
   display: flex;
-  min-height: 98vh;
+  min-height: 98dvh;
   padding: 1vh 0;
 }
 
@@ -111,7 +111,7 @@ mat-icon {
 
 @media (max-width: 480px) {
   .login-content {
-    max-width: 83vw;
+    max-width: 83dvw;
     padding: 15px;
   }
 
