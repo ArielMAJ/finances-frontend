@@ -19,6 +19,34 @@
             <mat-label>Descrição da transação</mat-label>
             <input matInput formControlName="description" />
           </mat-form-field>
+
+          <mat-form-field
+            *ngIf="isViewMode || isDeleteMode"
+            appearance="fill"
+            class="form-field"
+          >
+            <mat-label>Data de criação</mat-label>
+            <input
+              matInput
+              type="date"
+              [value]="formattedCreatedAt"
+              disabled=""
+            />
+          </mat-form-field>
+
+          <mat-form-field
+            *ngIf="isViewMode || isDeleteMode"
+            appearance="fill"
+            class="form-field"
+          >
+            <mat-label>Data da última atualização</mat-label>
+            <input
+              matInput
+              disabled=""
+              type="date"
+              [value]="formattedUpdatedAt"
+            />
+          </mat-form-field>
           <div class="button-group">
             <button
               *ngIf="!isDeleteMode && !isViewMode"
