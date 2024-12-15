@@ -5,8 +5,8 @@
 }
 
 .outer {
-  padding-bottom: 5vw;
-  width: 100vw;
+  padding-bottom: 5dvw;
+  width: 100dvw;
 }
 
 h1 {
@@ -83,7 +83,7 @@ mat-card,
 
 .transaction-cell {
   text-align: right;
-  padding-right: 4vw;
+  padding-right: 4dvw;
   max-width: 80px;
   text-wrap: nowrap;
 }
@@ -110,7 +110,7 @@ th,
 
 .description-cell {
   width: auto;
-  max-width: 40vw;
+  max-width: 40dvw;
   overflow-wrap: break-word;
 }
 
@@ -152,14 +152,14 @@ th,
   }
 
   .description-cell {
-    max-width: 26vw;
+    max-width: 26dvw;
   }
 }
 
 @media (max-width: 432px) {
   mat-card,
   table {
-    width: 90vw;
+    width: 90dvw;
     margin: auto;
     padding: 0;
   }
@@ -171,6 +171,6 @@ th,
   }
 
   .description-cell {
-    max-width: 23vw;
+    max-width: 23dvw;
   }
 }
