@@ -16,14 +16,17 @@ export class FinancialTransactionService {
   getFinancialTransactions(): Observable<FinancialTransaction[]> {
     return this.httpClient.get<FinancialTransaction[]>(this.apiUrl);
   }
+
   getFinancialTransaction(id: Number): Observable<FinancialTransaction> {
     return this.httpClient.get<FinancialTransaction>(`${this.apiUrl}/${id}`);
   }
+
   createFinancialTransaction(
     payload: FinancialTransactionCreateRequest
   ): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}`, payload);
   }
+
   updateFinancialTransaction(
     id: Number,
     financialTransaction: FinancialTransactionCreateRequest
@@ -31,11 +34,12 @@ export class FinancialTransactionService {
     const url = `${this.apiUrl}/${id}`;
     return this.httpClient.put<void>(url, financialTransaction);
   }
-  deleteFinancialTransaction(id: Number): Observable<void> {
+
+  deleteFinancialTransaction(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
-  getTotalTransactionValue(): Observable<Number> {
-    return this.httpClient.get<Number>(`${this.apiUrl}/total`)
-  }
 
+  getTotalTransactionValue(): Observable<Number> {
+    return this.httpClient.get<Number>(`${this.apiUrl}/total`);
+  }
 }

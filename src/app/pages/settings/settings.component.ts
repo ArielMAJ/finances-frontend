@@ -8,7 +8,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DeletionConfirmationModalComponent } from '../../components/header/deletion-confirmation-modal/deletion-confirmation-modal.component';
+import { DeletionConfirmationModalComponent } from '../../components/deletion-confirmation-modal/deletion-confirmation-modal.component';
 import { User } from '../../Models/User';
 import { UserUpdateRequest } from '../../Models/UserUpdateRequest';
 import { UserService } from '../../services/user.service';
@@ -75,54 +75,52 @@ export class SettingsComponent implements OnInit {
   }
 
   deleteUser(): void {
-    const dialogRef = this.dialog.open(DeletionConfirmationModalComponent, {
-      width: '250px',
-      data: { mensagem: 'Tem certeza de que deseja excluir este usuário?' },
-    });
+    const dialogRef = this.dialog.open(DeletionConfirmationModalComponent);
 
-    dialogRef.afterClosed().subscribe((confirmado) => {
-      if (confirmado) {
-        this.userService.deleteCurrentUser().subscribe(
-          (response) => {
-            if (response === null) {
-              this.toastr.success('Usuário excluído com sucesso!');
-              localStorage.setItem('token', '');
-              this.router.navigate(['/login']);
-            } else {
-              this.toastr.error('Erro ao excluir o Usuário!');
-            }
-          },
-          (error) => {
-            this.toastr.error('Erro ao excluir o Usuário!');
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (!confirmed) return;
+
+      this.userService.deleteCurrentUser().subscribe(
+        (response) => {
+          if (response === null) {
+            this.toastr.success('Usuário excluído com sucesso!');
+            localStorage.setItem('token', '');
+            this.router.navigate(['/login']);
+            return;
           }
-        );
-      }
+          this.toastr.error('Erro ao excluir o Usuário!');
+        },
+        (error) => {
+          this.toastr.error('Erro ao excluir o Usuário!');
+        }
+      );
     });
   }
   updateUser(): void {
-    if (this.updateUserForm.valid) {
-      const updatedUserPayload: UserUpdateRequest = {
-        name: this.updateUserForm.get('name')?.value,
-        email: this.updateUserForm.get('email')?.value,
-        age: this.updateUserForm.get('age')?.value,
-        accountNumber: this.updateUserForm.get('accountNumber')?.value,
-        password: this.updateUserForm.get('password')?.value,
-      };
+    if (!this.updateUserForm.valid) return;
 
-      this.userService.updateCurrentUser(updatedUserPayload).subscribe(
-        (response) => {
-          this.toastr.success('Usuário editado com sucesso!');
-          if (this.currentUser.email != updatedUserPayload.email) {
-            localStorage.setItem('token', '');
-            this.router.navigate(['/login']);
-          }
-          this.router.navigate(['/dashboard'])
-        },
-        (error) => {
-          console.error('Erro da API:');
-          this.toastr.error(error.error.detail, 'Erro ao editar usuário.');
+    const updatedUserPayload: UserUpdateRequest = {
+      name: this.updateUserForm.get('name')?.value,
+      email: this.updateUserForm.get('email')?.value,
+      age: this.updateUserForm.get('age')?.value,
+      accountNumber: this.updateUserForm.get('accountNumber')?.value,
+      password: this.updateUserForm.get('password')?.value,
+    };
+
+    this.userService.updateCurrentUser(updatedUserPayload).subscribe(
+      () => {
+        this.toastr.success('Usuário editado com sucesso!');
+        if (this.currentUser.email != updatedUserPayload.email) {
+          localStorage.setItem('token', '');
+          this.router.navigate(['/login']);
+          return;
         }
-      );
-    }
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        console.error('Erro da API:');
+        this.toastr.error(error.error.detail, 'Erro ao editar usuário.');
+      }
+    );
   }
 }

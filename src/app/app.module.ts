@@ -19,12 +19,9 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
-import { CreateFinancialTransactionComponent } from './components/create-financial-transaction/create-financial-transaction.component';
-import { DeleteFinancialTransactionComponent } from './components/delete-financial-transaction/delete-financial-transaction.component';
-import { DeletionConfirmationModalComponent } from './components/header/deletion-confirmation-modal/deletion-confirmation-modal.component';
+import { DeletionConfirmationModalComponent } from './components/deletion-confirmation-modal/deletion-confirmation-modal.component';
+import { FinancialTransactionComponent } from './components/financial-transaction/financial-transaction.component';
 import { HeaderComponent } from './components/header/header.component';
-import { UpdateFinancialTransactionComponent } from './components/update-financial-transaction/update-financial-transaction.component';
-import { ViewFinancialTransactionDetailsComponent } from './components/view-financial-transaction-details/view-financial-transaction-details.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SettingsComponent } from './pages/settings/settings.component';
@@ -38,11 +35,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     HeaderComponent,
     DeletionConfirmationModalComponent,
     DashboardComponent,
-    DeleteFinancialTransactionComponent,
-    ViewFinancialTransactionDetailsComponent,
-    UpdateFinancialTransactionComponent,
-    CreateFinancialTransactionComponent,
     SettingsComponent,
+    FinancialTransactionComponent,
   ],
   imports: [
     MatFormFieldModule,

@@ -1,0 +1,76 @@
+<div class="modal-container">
+  <mat-card class="modal-card">
+    <div class="modal-header">
+      <h1>{{ data.title }} Transação Financeira</h1>
+    </div>
+    <div class="modal-body">
+      <div class="modal-form">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Valor da transação</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="value"
+              (input)="applyCurrencyMaskOnEvent($event)"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Descrição da transação</mat-label>
+            <input matInput formControlName="description" />
+          </mat-form-field>
+          <div class="button-group">
+            <button
+              *ngIf="!isDeleteMode && !isViewMode"
+              mat-raised-button
+              mat-dialog-close
+              color="warn"
+            >
+              Fechar
+            </button>
+            <button
+              *ngIf="isViewMode"
+              mat-raised-button
+              mat-dialog-close
+              color="primary"
+            >
+              Fechar
+            </button>
+            <button
+              *ngIf="isDeleteMode"
+              mat-raised-button
+              mat-dialog-close
+              color="primary"
+            >
+              Cancelar
+            </button>
+            <button
+              *ngIf="!isViewMode && !isDeleteMode"
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [mat-dialog-close]="true"
+            >
+              Salvar
+            </button>
+            <button
+              *ngIf="isDeleteMode"
+              type="submit"
+              mat-raised-button
+              color="warn"
+              [mat-dialog-close]="true"
+            >
+              Deletar
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-image">
+        <img
+          src="assets/images/team.png"
+          alt="Cadastro de Transação Financeira"
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>

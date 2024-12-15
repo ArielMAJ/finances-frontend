@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="margem">
+<div class="outer">
   <div class="dashboard-header">
     <h1>Extrato</h1>
   </div>
@@ -69,7 +69,7 @@
               <mat-icon class="color-icon">visibility</mat-icon>
             </button>
             <button
-              (click)="openEditItemDialog(financialTransaction)"
+              (click)="openUpdateItemDialog(financialTransaction)"
               mat-icon-button
               class="button-color-edit"
             >

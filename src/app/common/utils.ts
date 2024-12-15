@@ -1,4 +1,4 @@
-export function applyCurrencyMask(value: String): String {
+export function applyCurrencyMask(value: string): string {
   const initialParse = value.replace(/[^\d.,]/g, '');
   const decimalSeparator =
     initialParse.includes(',') &&
