@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterModel } from '../../Models/RegisterModel';
 import { LoginService } from '../../services/login.service';
+import { HealthService } from '../../services/health.service';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +18,14 @@ import { LoginService } from '../../services/login.service';
 })
 export class RegisterComponent {
   cadastroForm!: FormGroup;
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private healthService: HealthService
   ) {
     this.cadastroForm = this.formBuilder.group(
       {
@@ -40,6 +43,11 @@ export class RegisterComponent {
     );
   }
 
+  ngOnInit(): void {
+    this.healthService
+      .healthCheck().subscribe()
+  }
+
   checkPasswordsMatch(group: FormGroup) {
     const password = group.get('password')?.value;
     const passwordConfirmation = group.get('passwordConfirmation')?.value;
@@ -49,6 +57,7 @@ export class RegisterComponent {
   }
 
   submitRegister() {
+    this.loading = true;
     let dadosLogin = this.cadastroForm.getRawValue();
     delete dadosLogin.passwordConfirmation;
 
@@ -59,7 +68,21 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       (error) => {
-        this.toastr.error('Erro ao realizar cadastro!', 'Erro');
+        this.loading = false;
+
+        if (error.name === 'TimeoutError' || error.statusText === 'Unknown Error') {
+          return
+        }
+
+        if (error.error.detail.includes("Email already in use")) {
+          this.toastr.error('E-mail já está em uso. Por favor digite um diferente.', 'Erro ao cadastrar');
+          return;
+        }
+        if (error.error.detail.includes("Account number already in use")) {
+          this.toastr.error('Número da conta já está em uso. Por favor digite uma conta diferente diferente.', 'Erro ao cadastrar');
+          return;
+        }
+        this.toastr.error('Um erro inesperado aconteceu.', 'Erro ao cadastrar');
       }
     );
   }

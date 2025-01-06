@@ -37,8 +37,8 @@
         </div>
 
         <div class="button-container">
-          <button class="input-submit" [disabled]="!loginForm.valid">
-            LOGIN
+          <button class="input-submit" [disabled]="!loginForm.valid || loading">
+            {{ loading ? "Aguarde..." : "Acessar" }}
           </button>
         </div>
       </form>
