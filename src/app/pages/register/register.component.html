@@ -6,8 +6,11 @@
         <p>Preencha os campos abaixo para criar sua conta.</p>
       </div>
 
-      <form class="form-content" [formGroup]="cadastroForm" (submit)="submitRegister()">
-        
+      <form
+        class="form-content"
+        [formGroup]="cadastroForm"
+        (submit)="submitRegister()"
+      >
         <div class="form-row">
           <div class="form-group">
             <label>Nome</label>
@@ -15,11 +18,17 @@
               <mat-icon matPrefix>badge</mat-icon>
               <input formControlName="name" placeholder="Digite seu nome" />
             </div>
-            <small *ngIf="cadastroForm.get('name')?.errors?.['required'] && cadastroForm.get('name')?.touched">
+            <small
+              *ngIf="cadastroForm.get('name')?.errors?.['required'] && cadastroForm.get('name')?.touched"
+            >
               Campo obrigatório!
             </small>
-            <small *ngIf="cadastroForm.get('name')?.errors?.['minlength'] && cadastroForm.get('name')?.touched">
-              Mínimo {{ cadastroForm.get('name')?.errors?.['minlength']?.requiredLength }} caracteres.
+            <small
+              *ngIf="cadastroForm.get('name')?.errors?.['minlength'] && cadastroForm.get('name')?.touched"
+            >
+              Mínimo
+              {{ cadastroForm.get('name')?.errors?.['minlength']?.requiredLength }}
+              caracteres.
             </small>
           </div>
 
@@ -27,16 +36,28 @@
             <label>Idade</label>
             <div class="input-container">
               <mat-icon matPrefix>event</mat-icon>
-              <input formControlName="age" placeholder="Digite sua idade" type="number" />
+              <input
+                formControlName="age"
+                placeholder="Digite sua idade"
+                type="number"
+              />
             </div>
-            <small *ngIf="cadastroForm.get('age')?.errors?.['required'] && cadastroForm.get('age')?.touched">
+            <small
+              *ngIf="cadastroForm.get('age')?.errors?.['required'] && cadastroForm.get('age')?.touched"
+            >
               Campo obrigatório!
             </small>
-            <small *ngIf="cadastroForm.get('age')?.errors?.['min'] && cadastroForm.get('age')?.touched">
-              Mínimo de {{ cadastroForm.get('age')?.errors?.['min']?.min }} anos.
+            <small
+              *ngIf="cadastroForm.get('age')?.errors?.['min'] && cadastroForm.get('age')?.touched"
+            >
+              Mínimo de
+              {{ cadastroForm.get('age')?.errors?.['min']?.min }} anos.
             </small>
-            <small *ngIf="cadastroForm.get('age')?.errors?.['max'] && cadastroForm.get('age')?.touched">
-              Máximo de {{ cadastroForm.get('age')?.errors?.['max']?.max }} anos.
+            <small
+              *ngIf="cadastroForm.get('age')?.errors?.['max'] && cadastroForm.get('age')?.touched"
+            >
+              Máximo de
+              {{ cadastroForm.get('age')?.errors?.['max']?.max }} anos.
             </small>
           </div>
         </div>
@@ -46,9 +67,14 @@
             <label>Número da Conta</label>
             <div class="input-container">
               <mat-icon matPrefix>account_circle</mat-icon>
-              <input formControlName="accountNumber" placeholder="Número da conta" />
+              <input
+                formControlName="accountNumber"
+                placeholder="Número da conta"
+              />
             </div>
-            <small *ngIf="cadastroForm.get('accountNumber')?.errors?.['required'] && cadastroForm.get('accountNumber')?.touched">
+            <small
+              *ngIf="cadastroForm.get('accountNumber')?.errors?.['required'] && cadastroForm.get('accountNumber')?.touched"
+            >
               Campo obrigatório!
             </small>
           </div>
@@ -57,12 +83,20 @@
             <label>Email</label>
             <div class="input-container">
               <mat-icon matPrefix>email</mat-icon>
-              <input formControlName="email" placeholder="Digite seu email" type="email" />
+              <input
+                formControlName="email"
+                placeholder="Digite seu email"
+                type="email"
+              />
             </div>
-            <small *ngIf="cadastroForm.get('email')?.errors?.['required'] && cadastroForm.get('email')?.touched">
+            <small
+              *ngIf="cadastroForm.get('email')?.errors?.['required'] && cadastroForm.get('email')?.touched"
+            >
               Campo obrigatório!
             </small>
-            <small *ngIf="cadastroForm.get('email')?.errors?.['email'] && cadastroForm.get('email')?.touched">
+            <small
+              *ngIf="cadastroForm.get('email')?.errors?.['email'] && cadastroForm.get('email')?.touched"
+            >
               Formato inválido!
             </small>
           </div>
@@ -73,13 +107,23 @@
             <label>Senha</label>
             <div class="input-container">
               <mat-icon matPrefix>lock</mat-icon>
-              <input formControlName="password" placeholder="Digite sua senha" type="password" />
+              <input
+                formControlName="password"
+                placeholder="Digite sua senha"
+                type="password"
+              />
             </div>
-            <small *ngIf="cadastroForm.get('password')?.errors?.['required'] && cadastroForm.get('password')?.touched">
+            <small
+              *ngIf="cadastroForm.get('password')?.errors?.['required'] && cadastroForm.get('password')?.touched"
+            >
               Campo obrigatório!
             </small>
-            <small *ngIf="cadastroForm.get('password')?.errors?.['minlength'] && cadastroForm.get('password')?.touched">
-              Mínimo {{ cadastroForm.get('password')?.errors?.['minlength']?.requiredLength }} caracteres.
+            <small
+              *ngIf="cadastroForm.get('password')?.errors?.['minlength'] && cadastroForm.get('password')?.touched"
+            >
+              Mínimo
+              {{ cadastroForm.get('password')?.errors?.['minlength']?.requiredLength }}
+              caracteres.
             </small>
           </div>
 
@@ -87,16 +131,24 @@
             <label>Confirme a Senha</label>
             <div class="input-container">
               <mat-icon matPrefix>lock</mat-icon>
-              <input formControlName="passwordConfirmation" placeholder="Repita sua senha" type="password" />
+              <input
+                formControlName="passwordConfirmation"
+                placeholder="Repita sua senha"
+                type="password"
+              />
             </div>
-            <small *ngIf="cadastroForm.errors?.['passwordsDoNotMatch'] && cadastroForm.get('passwordConfirmation')?.touched">
+            <small
+              *ngIf="cadastroForm.errors?.['passwordsDoNotMatch'] && cadastroForm.get('passwordConfirmation')?.touched"
+            >
               As senhas não coincidem!
             </small>
           </div>
         </div>
 
         <div class="button-container">
-          <button [disabled]="!cadastroForm.valid" class="submit-button">Cadastrar</button>
+          <button [disabled]="!cadastroForm.valid || loading" class="submit-button">
+            {{ loading ? "Aguarde..." : "Cadastrar" }}
+          </button>
         </div>
       </form>
 

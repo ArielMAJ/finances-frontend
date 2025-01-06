@@ -33,7 +33,7 @@ export class HeaderComponent {
     });
     this.financialTransactionService
       .getTotalTransactionValue()
-      .subscribe((value) => (this.totalTransactionValue = value));
+      .subscribe((value) => (this.totalTransactionValue = value || 0));
   }
 
   logout() {

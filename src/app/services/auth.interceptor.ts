@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, timeout } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toastr: ToastrService) {}
@@ -22,9 +22,23 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (
       request.url.endsWith('/auth/login') ||
-      request.url.endsWith('/user/signup')
+      request.url.endsWith('/user/signup') ||
+      request.url.endsWith('/health')
     ) {
-      return next.handle(request);
+      return next.handle(request).pipe(
+        retry(1),
+        timeout(5000),
+        catchError((error) => {
+          if (error.name === 'TimeoutError' || error.statusText === 'Unknown Error') {
+            this.toastr.error(
+              'Tente novamente em alguns minutos.',
+              'Servidor indisponível'
+            );
+          }
+
+          return throwError(() => error);
+        })
+      );
     }
 
     const expiresAt = parseInt(localStorage.getItem('expiresAt') || '0', 10);
